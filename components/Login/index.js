@@ -100,6 +100,7 @@ const Login = (props) => {
           <Text style={styles.semibold17label}>Password</Text>
           <TextInput
             value={password}
+            secureTextEntry={true}
             onChangeText={(e) => setPassword(e)}
             placeholder="Password"
             style={styles.allfield}

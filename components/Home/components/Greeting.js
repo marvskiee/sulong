@@ -32,7 +32,7 @@ const Greeting = (props) => {
         props.setUser(res.data);
         // }, 1000);
       } else {
-        sessionErrorToast();
+        // sessionErrorToast();
       }
     };
     if (!data) {
@@ -54,7 +54,7 @@ const Greeting = (props) => {
             onPress={() => NavigateToDetails(props)}
           >
             <Image
-              source={require("../../../assets/images/denji.png")}
+              source={require("../../../assets/images/denji.jpg")}
               style={styles.profileImage}
             />
           </TouchableOpacity>

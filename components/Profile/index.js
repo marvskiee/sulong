@@ -115,7 +115,7 @@ const Profile = (props) => {
               }}
             >
               <Image
-                source={require("../../assets/images/denji.png")}
+                source={require("../../assets/images/denji.jpg")}
                 style={styles.profileImage}
               />
               <Text style={styles.semibold17}>{data[0].username}</Text>

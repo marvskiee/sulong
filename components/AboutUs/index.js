@@ -7,7 +7,7 @@ const AboutUs = () => {
     <View>
       <ScrollView style={[styles.containerWrapper]}>
         <Image
-          source={require("../../assets/images/denji.png")}
+          source={require("../../assets/images/denji.jpg")}
           style={styles.aboutUsImage}
         />
         <Text style={[styles.aboutUsText, { marginBottom: 30 }]}>

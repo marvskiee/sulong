@@ -50,7 +50,7 @@ const Announcement = (props) => {
           renderItem={({ item }) => (
             <View style={styles.announcementCard}>
               <Image
-                source={require("../../assets/images/denji.png")}
+                source={require("../../assets/images/denji.jpg")}
                 style={styles.announcementImage}
               />
               <Text style={styles.announcementTitle}>{item.title}</Text>
