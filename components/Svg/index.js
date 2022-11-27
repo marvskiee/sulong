@@ -16,3 +16,5 @@ export { default as AboutUs } from "./AboutUs";
 export { default as Calendar } from "./Calendar";
 export { default as Bell } from "./Bell";
 export { default as Sos } from "./Sos";
+export { default as Visible } from "./Visible";
+export { default as NotVisible } from "./NotVisible";

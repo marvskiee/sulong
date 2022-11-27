@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  Image,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { externalStyle } from "../../styles/externalStyle";
@@ -19,10 +20,15 @@ import {
 } from "../Toast";
 import { isLoading } from "expo-font";
 import colors from "../../config/colors";
+import { Logo, NotVisible, Visible } from "../Svg";
 const NavigateToDetails = ({ navigation }, name) => {
   navigation.navigate(name);
 };
 const Register = (props) => {
+  // password toggle
+  const [passwordToggle, setPasswordToggle] = useState(false);
+  const [repeatToggle, setRepeatToggle] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -185,6 +191,8 @@ const Register = (props) => {
       handler: (e) => setPassword(e),
       value: password,
       error: errors?.password,
+      toggle: passwordToggle,
+      setToggle: () => setPasswordToggle(!passwordToggle),
     },
     {
       label: "Repeat Password",
@@ -192,6 +200,8 @@ const Register = (props) => {
       handler: (e) => setRepeat(e),
       value: repeat,
       error: errors?.repeatPassword,
+      toggle: repeatToggle,
+      setToggle: () => setRepeatToggle(!repeatToggle),
     },
   ];
   return (
@@ -223,21 +233,36 @@ const Register = (props) => {
                   {item.error}
                 </Text>
               )}
-
-              <TextInput
-                secureTextEntry={["Repeat Password", "Password"].includes(
-                  item.label
+              <View style={{ position: "relative" }}>
+                <TextInput
+                  secureTextEntry={
+                    ["Repeat Password", "Password"].includes(item.label) &&
+                    !item.toggle
+                  }
+                  onChangeText={item.handler}
+                  value={item.value}
+                  placeholder={item.placeholder}
+                  style={[
+                    styles.allfield,
+                    {
+                      borderColor: [item.error ? colors.red : colors.black],
+                      paddingRight: ["Repeat Password", "Password"].includes(
+                        item.label
+                      )
+                        ? 50
+                        : 20,
+                    },
+                  ]}
+                />
+                {["Repeat Password", "Password"].includes(item.label) && (
+                  <TouchableOpacity
+                    onPress={item.setToggle}
+                    style={{ position: "absolute", right: 20, top: 18 }}
+                  >
+                    <View>{item.toggle ? <Visible /> : <NotVisible />}</View>
+                  </TouchableOpacity>
                 )}
-                onChangeText={item.handler}
-                value={item.value}
-                placeholder={item.placeholder}
-                style={[
-                  {
-                    borderColor: [item.error ? colors.red : colors.black],
-                  },
-                  styles.allfield,
-                ]}
-              />
+              </View>
             </>
           )}
           ListHeaderComponent={
